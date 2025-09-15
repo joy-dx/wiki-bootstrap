@@ -1,0 +1,16 @@
+{{ range $key, $env := .Site.Data.environments }}
+    {{ $slug := $key }}
+    {{ $title := $env.name }}
+
+    {{ $content := dict
+        "mediaType" "text/markdown"
+    }}
+    {{ $page := dict
+        "content" $content
+        "kind" "page"
+        "path" $key
+        "title" $title
+        "params" $env
+    }}
+    {{ $.AddPage $page }}
+{{ end }}

@@ -1,0 +1,12 @@
+{{ define "main" }}
+{{- if .Site.Home.Content -}}
+{{- .Site.Home.Content -}}
+{{- partial "pagination.html" . -}}
+{{- else -}}
+<h1>Default JoyDX wiki home page</h1>
+<ol>
+<li>From within JoyDX, use the special path <code>_index</code> when creating a wiki page</li>
+<li>Manually create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
+</ol>
+{{- end -}}
+{{- end -}}

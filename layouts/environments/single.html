@@ -1,0 +1,102 @@
+{{- define "main" -}}
+{{- partial "table-of-contents.html" . -}}
+
+<h1>{{ .Params.Name }}</h1>
+<p>{{ .Params.Description }}</p>
+
+<h2>Supporting Tools</h2>
+<ul>
+    {{ range .Params.tools }}
+    {{ $tool := index $.Site.Data.tools .ref }}
+    <li>
+        <a href="/tools/{{ $tool.ref }}">{{ $tool.name }}</a>
+    </li>
+    {{ end }}
+</ul>
+
+<h2>Apps</h2>
+{{ range .Params.apps }}
+
+    <h3>{{ .name }}</h3>
+    <p>{{ .description }}</p>
+    <div class="flex">
+        {{ if .home_page }}
+        <a href="{{ .home_page }}" target="_blank">Visit home page</a>
+        {{ end }}
+        {{ if .repository_url }}
+        <a href="{{ .repository_url }}" target="_blank">Visit repository</a>
+        {{ end }}
+    </div>
+
+    <h4>Configuration</h4>
+
+    {{ if .config.health }}
+        <h5>Health</h5>
+        <ul>
+        {{- range .config.health -}}
+        <li>
+            {{ .name }} - {{ .description }}
+            <br />
+            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+        </li>
+        {{- end -}}
+        </ul>
+    {{ end }}
+
+    {{ if .config.source }}
+    <h5>Sourcing</h5>
+    <ul>
+        {{- range .config.source -}}
+        <li>
+            {{ .name }} - {{ .description }}
+            <br />
+            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+        </li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+
+    {{ if .config.build }}
+    <h5>Build</h5>
+    <ul>
+        {{- range .config.build -}}
+        <li>
+            {{ .name }} - {{ .description }}
+            <br />
+            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+        </li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+
+    {{ if .config.dev }}
+    <h5>Development</h5>
+
+    <ul>
+        {{- range .config.dev -}}
+        <li>
+            {{ .name }} - {{ .description }}
+            <br />
+            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+        </li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+
+    {{ if .config.staging }}
+    <h5>Staging</h5>
+    <ul>
+        {{- range .config.staging -}}
+        <li>
+            {{ .name }} - {{ .description }}
+            <br />
+            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+        </li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+
+{{ end }}
+
+{{- partial "pagination.html" . -}}
+{{- end -}}

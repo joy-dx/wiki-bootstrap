@@ -1,0 +1,42 @@
+{{- define "main" -}}
+{{- partial "table-of-contents.html" . -}}
+
+<h1>{{ .Params.Name }}</h1>
+<div class="flex">
+    {{ if .Params.home_page }}
+    <a href="{{ .Params.home_page }}" target="_blank">Visit home page</a>
+    {{ end }}
+    {{ if .Params.license }}
+    <a href="{{ .Params.license }}" target="_blank">Read License</a>
+    {{ end }}
+</div>
+<p>{{ .Params.Description }}</p>
+
+{{ if .Params.binaries }}
+    {{ if (gt (len .Params.binaries) 0) }}
+    <h5>Binaries</h5>
+    <ul>
+        {{- range .Params.binaries -}}
+        <li>
+            {{ . }}
+        </li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+{{ end }}
+
+{{ if .Params.environment }}
+    {{ if (gt (len .Params.environment) 0) }}
+    <h5>Environment Variables</h5>
+    <ul>
+        {{- range .Params.environment -}}
+        <li>
+            {{ . }}
+        </li>
+        {{- end -}}
+    </ul>
+    {{ end }}
+{{ end }}
+
+{{- partial "pagination.html" . -}}
+{{- end -}}

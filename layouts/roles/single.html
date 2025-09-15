@@ -1,0 +1,17 @@
+{{- define "main" -}}
+{{- partial "table-of-contents.html" . -}}
+
+<h1>{{ .Params.Name }}</h1>
+<p>{{ .Params.Description }}</p>
+
+<h2>Supporting Tools</h2>
+<ul>
+    {{ range .Params.tools }}
+    {{ $tool := index $.Site.Data.tools .ref }}
+    <li>
+        <a href="/tools/{{ $tool.ref }}">{{ $tool.name }}</a>
+    </li>
+    {{ end }}
+</ul>
+{{- partial "pagination.html" . -}}
+{{- end -}}

@@ -1,0 +1,21 @@
+{{ $currentPage := . }}
+{{- if .Site.Menus.main -}}
+
+{{- range .Site.Menus.main.ByWeight -}}
+    {{template "menu-item" dict "item" . "CurrentPage" $currentPage}}
+{{- end -}}
+{{- end }}
+
+{{ define "menu-item" }}
+{{- $item := .item -}}
+{{- $currentPage := .CurrentPage -}}
+{{- $isActive := or (eq $currentPage.RelPermalink $item.URL) (eq $currentPage.Permalink $item.URL) -}}
+    <a
+            href="{{ $item.URL }}"
+            class="block"
+            aria-current="page"
+    >{{- with $item.Pre -}}{{ . }}{{ end -}}
+        {{- $item.Name -}}
+        {{- with $item.Post -}}{{ . }}{{ end -}}</a
+    >
+{{ end }}

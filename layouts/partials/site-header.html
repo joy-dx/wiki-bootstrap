@@ -1,0 +1,19 @@
+<header>
+    <div
+            class="mx-auto flex max-w-screen-xl items-center w-full space-x-2"
+    >
+        <a
+                href="/"
+                class="flex gap-3 rtl:space-x-reverse grow"
+        >
+            {{- if .Site.Params.site_icon_url -}}
+                <img src="{{ .Site.Params.site_icon_url }}" alt="Site Logo" class="max-h-2" />
+            {{- end -}}
+            <span
+                    class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
+            >{{ .Site.Title }}</span
+            >
+        </a>
+        {{- partial "theme-switcher.html" . -}}
+    </div>
+</header>

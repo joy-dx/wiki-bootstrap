@@ -1,0 +1,16 @@
+{{ range $key, $role := .Site.Data.roles }}
+    {{ $slug := $key }}
+    {{ $title := $role.name }}
+
+    {{ $content := dict
+        "mediaType" "text/markdown"
+    }}
+    {{ $page := dict
+        "content" $content
+        "kind" "page"
+        "path" $key
+        "title" $title
+        "params" $role
+    }}
+    {{ $.AddPage $page }}
+{{ end }}

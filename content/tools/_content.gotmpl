@@ -1,0 +1,16 @@
+{{ range $key, $tool := .Site.Data.tools }}
+    {{ $slug := $key }}
+    {{ $title := $tool.name }}
+
+    {{ $content := dict
+        "mediaType" "text/markdown"
+    }}
+    {{ $page := dict
+        "content" $content
+        "kind" "page"
+        "path" $key
+        "title" $title
+        "params" $tool
+    }}
+    {{ $.AddPage $page }}
+{{ end }}

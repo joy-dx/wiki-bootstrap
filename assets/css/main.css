@@ -1,0 +1,394 @@
+@import "tailwindcss";
+
+/* ================================
+   Theme Variables
+   ================================ */
+
+/* ================================
+   Orange Theme Orange
+   ================================ */
+.theme-orange {
+    --color-bg: theme(colors.orange.50);
+    --color-text: theme(colors.orange.950);
+    --color-text-muted: theme(colors.orange.800);
+    --color-text-subtle: theme(colors.orange.700);
+    --color-border: theme(colors.orange.300);
+    --color-border-subtle: theme(colors.orange.200);
+
+    --color-primary: rgb(230, 88, 0);
+    --color-primary-hover: theme(colors.orange.700);
+
+    --color-code-bg: theme(colors.orange.100);
+    --color-code-text: theme(colors.orange.900);
+
+    --color-pre-bg: theme(colors.orange.900);
+    --color-pre-text: theme(colors.orange.100);
+
+    --color-table-header-bg: theme(colors.orange.100);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+
+html.dark.theme-orange {
+    --color-bg: theme(colors.orange.950);
+    --color-text: theme(colors.orange.50);
+    --color-text-muted: theme(colors.orange.200);
+    --color-text-subtle: theme(colors.orange.300);
+    --color-border: theme(colors.orange.700);
+    --color-border-subtle: theme(colors.orange.800);
+
+    --color-primary: rgb(230, 88, 0);
+    --color-primary-hover: theme(colors.orange.400);
+
+    --color-code-bg: theme(colors.orange.800);
+    --color-code-text: theme(colors.orange.200);
+
+    --color-pre-bg: theme(colors.orange.900);
+    --color-pre-text: theme(colors.orange.100);
+
+    --color-table-header-bg: theme(colors.orange.800);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+/* ================================
+   Default Theme Grey
+   ================================ */
+.theme-default {
+    --color-bg: theme(colors.slate.50);
+    --color-text: theme(colors.slate.950);
+    --color-text-muted: theme(colors.slate.800);
+    --color-text-subtle: theme(colors.slate.600);
+    --color-border: theme(colors.slate.300);
+    --color-border-subtle: theme(colors.slate.200);
+
+    --color-primary: theme(colors.indigo.600);
+    --color-primary-hover: theme(colors.indigo.700);
+
+    --color-code-bg: theme(colors.slate.100);
+    --color-code-text: theme(colors.slate.900);
+
+    --color-pre-bg: theme(colors.slate.900);
+    --color-pre-text: theme(colors.slate.100);
+
+    --color-table-header-bg: theme(colors.slate.100);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+
+html.dark.theme-default {
+    --color-bg: theme(colors.slate.950);
+    --color-text: theme(colors.slate.50);
+    --color-text-muted: theme(colors.slate.300);
+    --color-text-subtle: theme(colors.slate.400);
+    --color-border: theme(colors.slate.700);
+    --color-border-subtle: theme(colors.slate.800);
+
+    --color-primary: theme(colors.indigo.400);
+    --color-primary-hover: theme(colors.indigo.300);
+
+    --color-code-bg: theme(colors.slate.800);
+    --color-code-text: theme(colors.slate.200);
+
+    --color-pre-bg: theme(colors.slate.800);
+    --color-pre-text: theme(colors.slate.100);
+
+    --color-table-header-bg: theme(colors.slate.800);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+/* ================================
+   Rose Theme Pinkish
+   ================================ */
+.theme-rose {
+    --color-bg: theme(colors.rose.50);
+    --color-text: theme(colors.rose.950);
+    --color-text-muted: theme(colors.rose.800);
+    --color-text-subtle: theme(colors.rose.700);
+    --color-border: theme(colors.rose.300);
+    --color-border-subtle: theme(colors.rose.200);
+
+    --color-primary: theme(colors.pink.600);
+    --color-primary-hover: theme(colors.pink.700);
+
+    --color-code-bg: theme(colors.rose.100);
+    --color-code-text: theme(colors.rose.900);
+
+    --color-pre-bg: theme(colors.rose.900);
+    --color-pre-text: theme(colors.rose.100);
+
+    --color-table-header-bg: theme(colors.rose.100);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+
+html.dark.theme-rose {
+    --color-bg: theme(colors.rose.950);
+    --color-text: theme(colors.rose.50);
+    --color-text-muted: theme(colors.rose.200);
+    --color-text-subtle: theme(colors.rose.300);
+    --color-border: theme(colors.rose.700);
+    --color-border-subtle: theme(colors.rose.800);
+
+    --color-primary: theme(colors.pink.400);
+    --color-primary-hover: theme(colors.pink.300);
+
+    --color-code-bg: theme(colors.rose.800);
+    --color-code-text: theme(colors.rose.200);
+
+    --color-pre-bg: theme(colors.rose.900);
+    --color-pre-text: theme(colors.rose.100);
+
+    --color-table-header-bg: theme(colors.rose.800);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+/* ================================
+   Forest Theme Green
+   ================================ */
+.theme-forest {
+    --color-bg: theme(colors.green.50);
+    --color-text: theme(colors.green.950);
+    --color-text-muted: theme(colors.green.800);
+    --color-text-subtle: theme(colors.green.700);
+    --color-border: theme(colors.green.300);
+    --color-border-subtle: theme(colors.green.200);
+
+    --color-primary: theme(colors.emerald.700);
+    --color-primary-hover: theme(colors.emerald.800);
+
+    --color-code-bg: theme(colors.green.100);
+    --color-code-text: theme(colors.green.900);
+
+    --color-pre-bg: theme(colors.green.900);
+    --color-pre-text: theme(colors.green.100);
+
+    --color-table-header-bg: theme(colors.green.100);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+
+html.dark.theme-forest {
+    --color-bg: theme(colors.green.950);
+    --color-text: theme(colors.green.50);
+    --color-text-muted: theme(colors.green.200);
+    --color-text-subtle: theme(colors.green.300);
+    --color-border: theme(colors.green.700);
+    --color-border-subtle: theme(colors.green.800);
+
+    --color-primary: theme(colors.emerald.400);
+    --color-primary-hover: theme(colors.emerald.300);
+
+    --color-code-bg: theme(colors.green.800);
+    --color-code-text: theme(colors.green.200);
+
+    --color-pre-bg: theme(colors.green.900);
+    --color-pre-text: theme(colors.green.100);
+
+    --color-table-header-bg: theme(colors.green.800);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+/* ================================
+   Base Styles
+   ================================ */
+
+body {
+    @apply leading-relaxed antialiased transition-colors duration-300;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+main {
+    @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* ================================
+   Headings
+   ================================ */
+
+h1 {
+    @apply text-3xl font-bold tracking-tight mb-4 mt-8;
+    color: var(--color-text);
+}
+
+h2 {
+    @apply text-2xl font-semibold tracking-tight mb-3 mt-6;
+    color: var(--color-text);
+}
+
+h3 {
+    @apply text-xl font-semibold mb-2 mt-4;
+    color: var(--color-text-muted);
+}
+
+h4 {
+    @apply text-lg font-medium mb-2 mt-4;
+    color: var(--color-text-muted);
+}
+
+/* ================================
+   Paragraphs
+   ================================ */
+
+p {
+    @apply mb-4 leading-relaxed;
+    color: var(--color-text-muted);
+}
+
+/* ================================
+   Lists
+   ================================ */
+
+ul {
+    @apply list-disc list-inside mb-4 pl-4;
+    color: var(--color-text-muted);
+}
+
+ol {
+    @apply list-decimal list-inside mb-4 pl-4;
+    color: var(--color-text-muted);
+}
+
+/* ================================
+   Links
+   ================================ */
+
+a {
+    @apply no-underline transition-colors duration-200;
+    color: var(--color-link);
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+/* ================================
+   Blockquotes
+   ================================ */
+
+blockquote {
+    @apply border-l-4 pl-4 italic my-4;
+    border-color: var(--color-border);
+    color: var(--color-text-subtle);
+}
+
+/* ================================
+   Code Blocks
+   ================================ */
+
+pre {
+    @apply p-4 rounded-md overflow-x-auto text-sm mb-4;
+    background-color: var(--color-pre-bg);
+    color: var(--color-pre-text);
+}
+
+code {
+    @apply font-mono text-sm px-1 py-0.5 rounded;
+    background-color: var(--color-code-bg);
+    color: var(--color-code-text);
+}
+
+/* ================================
+   Horizontal Rule
+   ================================ */
+
+hr {
+    @apply border-t my-8;
+    border-color: var(--color-border);
+}
+
+/* ================================
+   Tables
+   ================================ */
+
+table {
+    @apply w-full border-collapse text-sm my-6;
+}
+
+th {
+    @apply border-b text-left font-semibold py-2 px-3;
+    border-color: var(--color-border);
+    background-color: var(--color-table-header-bg);
+    color: var(--color-text-muted);
+}
+
+td {
+    @apply border-b py-2 px-3;
+    border-color: var(--color-border-subtle);
+    color: var(--color-text-muted);
+}
+
+/* ================================
+   Images
+   ================================ */
+
+img {
+    @apply max-w-full h-auto rounded-md my-4 shadow-sm;
+}
+
+/* ================================
+   Forms
+   ================================ */
+
+input,
+textarea,
+select {
+    @apply rounded-md px-3 py-2 w-full text-sm border;
+    border-color: var(--color-border);
+    background-color: var(--color-bg);
+    color: var(--color-text-muted);
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+button {
+    @apply inline-flex items-center px-4 py-2 rounded-md font-medium text-sm transition-colors duration-200;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+}
+
+button:hover {
+    background-color: var(--color-button-hover);
+}
+
+/* ==================================
+   Actual styling to control the site
+   ================================== */
+
+header img {
+    max-height: 4rem;
+}
+
+#sidebar li {
+    @apply list-none;
+}
+
+#sidebar a {
+    @apply w-full block p-1 m-2 ;
+}
+
+main a {
+    @apply underline;
+}
+
+.bg-primary {
+    background-color: var(--color-bg) !important;
+}
+.text-primary {
+    color: var(--color-text);
+}

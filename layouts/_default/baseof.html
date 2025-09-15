@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{{ with .Site.LanguageCode }}<html lang="{{ . }}">{{ else }}<html>{{ end }}
+<head>
+    {{- partial "head.html" . -}}
+</head>
+<body>
+
+{{- partial "site-header.html" . -}}
+<div class="min-h-screen flex flex-col">
+    <!-- Main content area -->
+    <div class="flex flex-1 container mx-auto px-4 py-6 gap-6">
+        <!-- Sidebar -->
+        <aside class="w-72 shrink-0">
+            {{- partial "sidebar.html" . -}}
+        </aside>
+        <!-- Main content -->
+        <main class="flex-1 max-w-4xl">
+            {{- block "main" . -}}{{- end -}}
+        </main>
+
+
+    </div>
+
+    <!-- Global footer -->
+    <footer class="border-t mt-6 py-4">
+        <div class="container mx-auto px-4 text-sm">
+            {{- partial "footer.html" . -}}
+        </div>
+    </footer>
+</div>
+</body>
+</html>

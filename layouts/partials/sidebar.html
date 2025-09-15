@@ -1,0 +1,17 @@
+<div class="sticky top-6 space-y-6" id="sidebar">
+    <div>
+        <h2 class="text-lg font-semibold mb-2">On This Page</h2>
+        {{ .TableOfContents }}
+    </div>
+    <div>
+        <h2 class="text-lg font-semibold mb-2">Guides</h2>
+        {{- partial "global-menu.html" . -}}
+    </div>
+
+
+    <div>
+        <h2 class="text-lg font-semibold mb-2">Technical Information</h2>
+        {{- partial "menu.html" . -}}
+    </div>
+
+</div>

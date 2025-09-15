@@ -1,0 +1,190 @@
+<div class="relative inline-block">
+    <!-- Dropdown Trigger -->
+    <button
+            id="dropdownButton"
+            class="border rounded px-4 py-2 flex justify-between items-center w-48 cursor-pointer"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+    >
+        <span id="selectedOption">Select an option</span>
+        <svg
+                class="w-4 h-4 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+            ></path>
+        </svg>
+    </button>
+
+    <!-- Dropdown Options -->
+    <div
+            id="dropdownOptions"
+            class="absolute mt-2 w-full border rounded shadow-lg z-10 hidden text-primary bg-gray-100 dark:bg-gray-900"
+            role="listbox"
+    >
+        <div
+                class="px-4 py-2 cursor-pointer"
+                data-value="theme-default"
+                role="option"
+        >
+            Default
+        </div>
+        <div
+                class="px-4 py-2 cursor-pointer"
+                data-value="theme-forest"
+                role="option"
+        >
+            Forest
+        </div>
+        <div
+                class="px-4 py-2 cursor-pointer"
+                data-value="theme-rose"
+                role="option"
+        >
+            Rose
+        </div>
+        <div
+                class="px-4 py-2 cursor-pointer"
+                data-value="theme-orange"
+                role="option"
+        >
+            Orange
+        </div>
+    </div>
+</div>
+
+<!-- Theme Toggle Button -->
+<button
+        id="themeToggle"
+        class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        aria-label="Toggle Dark Mode"
+>
+    <!-- Sun Icon (Light Mode) -->
+    <svg
+            id="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 transition-all duration-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+    >
+        <path d="m12 3v1m0 16v1m8.5431-17.688-0.7 0.7m-15.793 15.938-0.7 0.7m17.65-8.65h1m-20 0h-1m19.464 8.6808-0.7-0.7m-15.714-15.931-0.7-0.7m8.65 4.65c-5.3333 0-5.3333 8 0 8s5.3333-8 0-8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </svg>
+
+    <!-- Moon Icon (Dark Mode) -->
+    <svg
+            id="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 transition-all duration-300 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+    >
+        <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+        />
+    </svg>
+</button>
+
+<script>
+    // --- DOM Elements ---
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownOptions = document.getElementById("dropdownOptions");
+    const selectedOption = document.getElementById("selectedOption");
+    const html = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const moonIcon = document.getElementById("icon-moon");
+    const sunIcon = document.getElementById("icon-sun");
+
+    // --- Dark Mode Preference ---
+    function getInitialDarkMode() {
+        const stored = localStorage.getItem("darkMode");
+        if (stored !== null) return stored === "true";
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    let darkMode = getInitialDarkMode();
+    if (darkMode) {
+        html.classList.add("dark");
+    }
+    sunIcon.classList.toggle("hidden", darkMode);
+    moonIcon.classList.toggle("hidden", !darkMode);
+    let currentTheme = localStorage.getItem("theme") || "theme-default";
+
+    function setTheme() {
+        html.classList.remove("theme-default", "theme-forest", "theme-rose", "theme-orange");
+        html.classList.add(currentTheme);
+        localStorage.setItem("theme", currentTheme);
+    }
+
+    setTheme();
+
+    // --- Toggle Button ---
+    themeToggle.addEventListener("click", () => {
+        darkMode = !darkMode
+        if (darkMode) {
+            html.classList.add("dark");
+            localStorage.setItem("darkMode", "true");
+        } else {
+            html.classList.remove("dark");
+            localStorage.setItem("darkMode", "false");
+        }
+        sunIcon.classList.toggle("hidden", darkMode);
+        moonIcon.classList.toggle("hidden", !darkMode);
+    });
+
+    // Update label to match saved theme
+    const savedOption = dropdownOptions.querySelector(`[data-value="${currentTheme}"]`);
+    if (savedOption) {
+        selectedOption.textContent = savedOption.textContent;
+    }
+
+    // --- Dropdown Toggle ---
+    dropdownButton.addEventListener("click", () => {
+        const isOpen = !dropdownOptions.classList.contains("hidden");
+        dropdownOptions.classList.toggle("hidden");
+        dropdownButton.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    // --- Handle Option Selection ---
+    dropdownOptions.querySelectorAll("[data-value]").forEach((option) => {
+        option.addEventListener("click", () => {
+            currentTheme = option.getAttribute("data-value");
+
+            setTheme();
+            selectedOption.textContent = option.textContent;
+            dropdownOptions.classList.add("hidden");
+            dropdownButton.setAttribute("aria-expanded", "false");
+        });
+    });
+
+    // --- Close dropdown when clicking outside ---
+    document.addEventListener("click", (event) => {
+        if (!dropdownButton.contains(event.target) && !dropdownOptions.contains(event.target)) {
+            dropdownOptions.classList.add("hidden");
+            dropdownButton.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    // --- Keyboard Accessibility ---
+    dropdownButton.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            dropdownOptions.classList.remove("hidden");
+            dropdownButton.setAttribute("aria-expanded", "true");
+            dropdownOptions.querySelector("[data-value]")?.focus();
+        }
+    });
+
+
+</script>
