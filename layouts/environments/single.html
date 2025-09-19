@@ -2,7 +2,7 @@
 {{- partial "table-of-contents.html" . -}}
 
 <h1>{{ .Params.Name }}</h1>
-<p>{{ .Params.Description }}</p>
+<p>{{ .Params.Description | markdownify }}</p>
 
 <h2>Supporting Tools</h2>
 <ul>

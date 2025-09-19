@@ -10,7 +10,7 @@
     <a href="{{ .Params.license }}" target="_blank">Read License</a>
     {{ end }}
 </div>
-<p>{{ .Params.Description }}</p>
+<p>{{ .Params.Description | markdownify }}</p>
 
 {{ if .Params.binaries }}
     {{ if (gt (len .Params.binaries) 0) }}
