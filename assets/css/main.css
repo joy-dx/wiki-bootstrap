@@ -271,7 +271,6 @@ ol {
 
 a {
     @apply no-underline transition-colors duration-200;
-    color: var(--color-button-text);
 }
 
 a:hover {
