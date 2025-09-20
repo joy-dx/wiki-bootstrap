@@ -14,3 +14,11 @@ hugo.linux
 hugo.yaml
 # Temporary lock file while building
 /.hugo_build.lock
+
+# Ignore data files provided by JoyDX
+/data/**
+!/data/**/.gitkeep
+
+# Ignore custom content pages but, keep the content generator templates
+/content/*
+!/content/*/

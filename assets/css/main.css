@@ -271,11 +271,11 @@ ol {
 
 a {
     @apply no-underline transition-colors duration-200;
-    color: var(--color-link);
+    color: var(--color-button-text);
 }
 
 a:hover {
-    color: var(--color-link-hover);
+    color: var(--color-button-hover);
 }
 
 /* ================================
@@ -369,23 +369,29 @@ button:hover {
 /* ==================================
    Actual styling to control the site
    ================================== */
-
+/* Restrict site logo size */
 header img {
     max-height: 4rem;
 }
-
+/* Remove the list type from sidebar links area*/
 #sidebar li {
     @apply list-none;
 }
-
+/* Have sidebar links hog available space */
 #sidebar a {
     @apply w-full block p-1 m-2 ;
 }
-
+/* Underline links within the main content area */
 main a {
     @apply underline;
 }
 
+/* Rotate the accordion caret graphic when open */
+details[open] summary svg {
+    transform: rotate(-90deg); /* example */
+}
+
+/* Simple color assignments from variables for class style application */
 .bg-primary {
     background-color: var(--color-bg) !important;
 }
