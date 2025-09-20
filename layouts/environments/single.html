@@ -1,101 +1,220 @@
 {{- define "main" -}}
-{{- partial "table-of-contents.html" . -}}
 
-<h1>{{ .Params.Name }}</h1>
+<h1>{{ .Params.Name }} - {{ .Params.version }}</h1>
 <p>{{ .Params.Description | markdownify }}</p>
 
-<h2>Supporting Tools</h2>
-<ul>
-    {{ range .Params.tools }}
-    {{ $tool := index $.Site.Data.tools .ref }}
-    <li>
-        <a href="/tools/{{ $tool.ref }}">{{ $tool.name }}</a>
-    </li>
-    {{ end }}
-</ul>
+{{ if .Params.vars }}
+<details class="border rounded-lg px-2 mb-2">
+    <summary
+            class="cursor-pointer select-none mb-2 font-medium flex items-center justify-between"
+    >
+        <h2 class="font-medium">Variables ({{ len .Params.vars }})</h2>
+        <div class="flex mt-2 gap-2">
+            Click to toggle
+            <svg
+                    class="w-5 h-5 mt-1 transition-transform duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+            >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </div>
+    </summary>
+    <ul>
+        {{ range $key, $value := .Params.vars }}
+        <li>
+            {{ $key }} = {{ $value }}
+        </li>
+        {{- end -}}
+    </ul>
+</details>
+{{ end }}
 
-<h2>Apps</h2>
-{{ range .Params.apps }}
-
-    <h3>{{ .name }}</h3>
-    <p>{{ .description }}</p>
-    <div class="flex">
-        {{ if .home_page }}
-        <a href="{{ .home_page }}" target="_blank">Visit home page</a>
+{{ if .Params.tools }}
+<details class="border rounded-lg px-2 mb-2">
+    <summary
+      class="cursor-pointer select-none mb-2 font-medium flex items-center justify-between"
+    >
+      <h2 class="font-medium">Supporting Tools ({{ len .Params.tools }})</h2>
+      <div class="flex mt-4 gap-2">
+        Click to toggle
+          <svg
+                  class="w-5 h-5 mt-1 transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+          >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+      </div>
+    </summary>
+    <ul>
+        {{ range .Params.tools }}
+        {{ $tool := index $.Site.Data.tools .ref }}
+        <li>
+            <a href="/tools/{{ $tool.ref }}">{{ $tool.name }}</a>
+        </li>
         {{ end }}
-        {{ if .repository_url }}
-        <a href="{{ .repository_url }}" target="_blank">Visit repository</a>
-        {{ end }}
-    </div>
+    </ul>
+</details>
+{{ end }}
 
-    <h4>Configuration</h4>
-
-    {{ if .config.health }}
-        <h5>Health</h5>
+{{ if .Params.containers }}
+<details class="border rounded-lg px-2 mb-2">
+    <summary
+            class="cursor-pointer select-none mb-2 font-medium flex items-center justify-between"
+    >
+        <h2 class="font-medium">Containers ({{ len .Params.containers }})</h2>
+        <div class="flex mt-4 gap-2">
+            Click to toggle
+            <svg
+                    class="w-5 h-5 mt-1 transition-transform duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+            >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </div>
+    </summary>
+    {{ range .Params.containers }}
+        <h3>{{ .container_name }} ({{ .image }})</h3>
+        <h4>Configuration</h4>
+        {{ if .environment }}
+        <h5>Environment</h5>
         <ul>
-        {{- range .config.health -}}
-        <li>
-            {{ .name }} - {{ .description }}
-            <br />
-            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
-        </li>
-        {{- end -}}
+            {{- range .environment -}}
+            <li>
+                {{ . }}
+            </li>
+            {{- end -}}
         </ul>
+        {{ end }}
+        {{ if .ports }}
+        <h5>Forwarded Ports</h5>
+        <ul>
+            {{- range .ports -}}
+            <li>
+                {{ . }}
+            </li>
+            {{- end -}}
+        </ul>
+        {{ end }}
     {{ end }}
+</details>
+{{ end }}
 
-    {{ if .config.source }}
-    <h5>Sourcing</h5>
-    <ul>
-        {{- range .config.source -}}
-        <li>
-            {{ .name }} - {{ .description }}
-            <br />
-            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
-        </li>
-        {{- end -}}
-    </ul>
+{{ if .Params.apps }}
+<details class="border rounded-lg px-2" open>
+    <summary
+      class="cursor-pointer select-none mb-2 font-medium flex items-center justify-between"
+    >
+        <h2>Apps ({{ len .Params.apps }})</h2>
+        <div class="flex mt-4 gap-2">
+            Click to toggle
+            <svg
+                    class="w-5 h-5 mt-1 transition-transform duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+            >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </div>
+    </summary>
+    {{ range .Params.apps }}
+        <h3>{{ .name }}</h3>
+        <p>{{ .description }}</p>
+        <div class="flex">
+            {{ if .home_page }}
+            <a href="{{ .home_page }}" target="_blank">Visit home page</a>
+            {{ end }}
+            {{ if .repository_url }}
+            <a href="{{ .repository_url }}" target="_blank">Visit repository</a>
+            {{ end }}
+        </div>
+
+        <h4>Configuration</h4>
+
+        {{ if .config.health }}
+            <h5>Health</h5>
+            <ul>
+            {{- range .config.health -}}
+            <li class="list-none">
+                {{ .name }}. {{ .description }}
+                <br />
+                <code class="inline-block my-4">
+                {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+                </code>
+            </li>
+            {{- end -}}
+            </ul>
+        {{ end }}
+
+        {{ if .config.source }}
+        <h5>Sourcing</h5>
+        <ul>
+            {{- range .config.source -}}
+            <li class="list-none">
+                {{ .name }}. {{ .description }}
+                <br />
+                <code class="inline-block my-4">
+                {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+                </code>
+            </li>
+            {{- end -}}
+        </ul>
+        {{ end }}
+
+        {{ if .config.build }}
+        <h5>Build</h5>
+        <ul>
+            {{- range .config.build -}}
+            <li class="list-none">
+                {{ .name }}. {{ .description }}
+                <br />
+                <code class="inline-block my-4 py-8">
+                {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+                </code>
+            </li>
+            {{- end -}}
+        </ul>
+        {{ end }}
+
+        {{ if .config.dev }}
+        <h5>Development</h5>
+
+        <ul>
+            {{- range .config.dev -}}
+            <li class="list-none">
+                {{ .name }}. {{ .description }}
+                <br />
+                <code class="inline-block my-4">
+                {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+                </code>
+            </li>
+            {{- end -}}
+        </ul>
+        {{ end }}
+
+        {{ if .config.staging }}
+        <h5>Staging</h5>
+        <ul>
+            {{- range .config.staging -}}
+            <li class="list-none">
+                {{ .name }}. {{ .description }}
+                <br />
+                <code class="inline-block my-4">
+                {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
+                </code>
+            </li>
+            {{- end -}}
+        </ul>
+        {{ end }}
+
     {{ end }}
-
-    {{ if .config.build }}
-    <h5>Build</h5>
-    <ul>
-        {{- range .config.build -}}
-        <li>
-            {{ .name }} - {{ .description }}
-            <br />
-            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
-        </li>
-        {{- end -}}
-    </ul>
-    {{ end }}
-
-    {{ if .config.dev }}
-    <h5>Development</h5>
-
-    <ul>
-        {{- range .config.dev -}}
-        <li>
-            {{ .name }} - {{ .description }}
-            <br />
-            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
-        </li>
-        {{- end -}}
-    </ul>
-    {{ end }}
-
-    {{ if .config.staging }}
-    <h5>Staging</h5>
-    <ul>
-        {{- range .config.staging -}}
-        <li>
-            {{ .name }} - {{ .description }}
-            <br />
-            {{ .configuration | jsonify (dict "prefix" "<br /> " "indent" "&nbsp;&nbsp;&nbsp;&nbsp;") }}
-        </li>
-        {{- end -}}
-    </ul>
-    {{ end }}
-
+</details>
 {{ end }}
 
 {{- partial "pagination.html" . -}}
