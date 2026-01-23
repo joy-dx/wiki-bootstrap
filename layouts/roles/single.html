@@ -7,7 +7,7 @@
 <h2>Supporting Tools</h2>
 <ul>
     {{ range .Params.tools }}
-    {{ $tool := index $.Site.Data.tools .ref }}
+    {{ $tool := index $.Site.Data.tools .name }}
     <li>
         <a href="/tools/{{ $tool.ref }}">{{ $tool.name }}</a>
     </li>

@@ -3,57 +3,6 @@
 /* ================================
    Theme Variables
    ================================ */
-
-/* ================================
-   Orange Theme Orange
-   ================================ */
-.theme-orange {
-    --color-bg: theme(colors.orange.50);
-    --color-text: theme(colors.orange.950);
-    --color-text-muted: theme(colors.orange.800);
-    --color-text-subtle: theme(colors.orange.700);
-    --color-border: theme(colors.orange.300);
-    --color-border-subtle: theme(colors.orange.200);
-
-    --color-primary: rgb(230, 88, 0);
-    --color-primary-hover: theme(colors.orange.700);
-
-    --color-code-bg: theme(colors.orange.100);
-    --color-code-text: theme(colors.orange.900);
-
-    --color-pre-bg: theme(colors.orange.900);
-    --color-pre-text: theme(colors.orange.100);
-
-    --color-table-header-bg: theme(colors.orange.100);
-
-    --color-button-bg: var(--color-primary);
-    --color-button-hover: var(--color-primary-hover);
-    --color-button-text: theme(colors.white);
-}
-
-html.dark.theme-orange {
-    --color-bg: theme(colors.orange.950);
-    --color-text: theme(colors.orange.50);
-    --color-text-muted: theme(colors.orange.200);
-    --color-text-subtle: theme(colors.orange.300);
-    --color-border: theme(colors.orange.700);
-    --color-border-subtle: theme(colors.orange.800);
-
-    --color-primary: rgb(230, 88, 0);
-    --color-primary-hover: theme(colors.orange.400);
-
-    --color-code-bg: theme(colors.orange.800);
-    --color-code-text: theme(colors.orange.200);
-
-    --color-pre-bg: theme(colors.orange.900);
-    --color-pre-text: theme(colors.orange.100);
-
-    --color-table-header-bg: theme(colors.orange.800);
-
-    --color-button-bg: var(--color-primary);
-    --color-button-hover: var(--color-primary-hover);
-    --color-button-text: theme(colors.white);
-}
 /* ================================
    Default Theme Grey
    ================================ */
@@ -104,6 +53,57 @@ html.dark.theme-default {
     --color-button-hover: var(--color-primary-hover);
     --color-button-text: theme(colors.white);
 }
+/* ================================
+   Orange Theme Orange
+   ================================ */
+.theme-orange {
+    --color-bg: theme(colors.orange.50);
+    --color-text: theme(colors.orange.950);
+    --color-text-muted: theme(colors.orange.800);
+    --color-text-subtle: theme(colors.orange.700);
+    --color-border: theme(colors.orange.300);
+    --color-border-subtle: theme(colors.orange.200);
+
+    --color-primary: rgb(230, 88, 0);
+    --color-primary-hover: theme(colors.orange.700);
+
+    --color-code-bg: theme(colors.orange.100);
+    --color-code-text: theme(colors.orange.900);
+
+    --color-pre-bg: theme(colors.orange.900);
+    --color-pre-text: theme(colors.orange.100);
+
+    --color-table-header-bg: theme(colors.orange.100);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+
+html.dark.theme-orange {
+    --color-bg: theme(colors.orange.950);
+    --color-text: theme(colors.orange.50);
+    --color-text-muted: theme(colors.orange.200);
+    --color-text-subtle: theme(colors.orange.300);
+    --color-border: theme(colors.orange.700);
+    --color-border-subtle: theme(colors.orange.800);
+
+    --color-primary: rgb(230, 88, 0);
+    --color-primary-hover: theme(colors.orange.400);
+
+    --color-code-bg: theme(colors.orange.800);
+    --color-code-text: theme(colors.orange.200);
+
+    --color-pre-bg: theme(colors.orange.900);
+    --color-pre-text: theme(colors.orange.100);
+
+    --color-table-header-bg: theme(colors.orange.800);
+
+    --color-button-bg: var(--color-primary);
+    --color-button-hover: var(--color-primary-hover);
+    --color-button-text: theme(colors.white);
+}
+
 /* ================================
    Rose Theme Pinkish
    ================================ */
